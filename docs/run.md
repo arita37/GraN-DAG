@@ -57,9 +57,9 @@ cd ..
 8. To run the algorithm, run the start_example.sh with updated paths.
 ```
 gedit start_example.sh
-CODE_PATH="/home/pushkalkatara/go/src/github.com/GraN-DAG"
-EXP_PATH="/home/pushkalkatara/go/src/github.com/GraN-DAG/experiments"
-DATA_PATH="/home/pushkalkatara/go/src/github.com/GraN-DAG/data/data_p10_e10_n1000_GP"
+CODE_PATH="~/go/src/github.com/GraN-DAG"
+EXP_PATH="~/go/src/github.com/GraN-DAG/experiments"
+DATA_PATH="~/go/src/github.com/GraN-DAG/data/data_p10_e10_n1000_GP"
 . ./start_example.sh
 ```
 
