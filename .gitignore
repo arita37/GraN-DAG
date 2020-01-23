@@ -1,1 +1,4 @@
 __pycache__
+/zexclude
+/*.sublime-project
+/*.sublime-workspace
