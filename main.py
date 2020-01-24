@@ -30,6 +30,7 @@ if __name__ == "__main__":
     add('--retrain', action="store_true",  help='after to-dag or pruning, retrain model from scratch before reporting nll-val')
     add('--random-seed', type=int, default=42, help="Random seed for pytorch and numpy")
 
+
     # data
     add('--data-path', type=str, default=None,   help='Path to data files')
     add('--i-dataset', type=str, default=None,  help='dataset index')
@@ -37,8 +38,11 @@ if __name__ == "__main__":
     add('--train-samples', type=int, default=0.8,  help='Number of samples used for training (default is 80% of the total size)')
     add('--test-samples', type=int, default=None, help='Number of samples used for testing (default is whatever is not used for training)')
     add('--train-batch-size', type=int, default=64,  help='number of samples in a minibatch')
-    add('--num-train-iter', type=int, default=100000, help='number of meta gradient steps')
+    
+    add('--num-train-iter', type=int, default=400, help='number of meta gradient steps')
     add('--normalize-data', action="store_true",  help='(x - mu) / std')
+
+
 
     # model
     add('--model', type=str, required=True,    help='model class')
@@ -53,12 +57,14 @@ if __name__ == "__main__":
     add('--scale-lr-with-mu', action="store_true",   help='Scale the learning rate wrt mu in the augmented lagrangian.')
     add('--stop-crit-win', type=int, default=100,   help='window size to compute stopping criterion')
 
+
     # pns, pruning and thresholding
     add('--pns-thresh', type=float, default=0.75,    help='threshold in PNS')
     add('--num-neighbors', type=int, default=None,    help='number of neighbors to select in PNS')
     add('--edge-clamp-range', type=float, default=1e-4,    help='as we train, clamping the edges (i,j) to zero when prod_ij is that close to zero. '
                              '0 means no clamping. Uses masks on inputs. Once an edge is clamped, no way back.')
     add('--cam-pruning-cutoff', nargs='+',    default=np.logspace(-6, 0, 10),     help='list of cutoff values. Higher means more edges')
+
 
     # Augmented Lagrangian options
     add('--omega-lambda', type=float, default=1e-4,     help='Precision to declare convergence of subproblems')
@@ -83,4 +89,8 @@ if __name__ == "__main__":
     add('--float', action="store_true",      help="Use Float precision")
 
     main(p.parse_args())
+
+
+
+
 

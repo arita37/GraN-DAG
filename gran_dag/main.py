@@ -2,20 +2,8 @@
 """
 GraN-DAG
 
-Copyright © 2019 Authors of Gradient-Based Neural DAG Learning
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
-Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 import os
 import argparse
@@ -37,6 +25,9 @@ def _print_metrics(stage, step, metrics, throttle=None):
 
 def file_exists(prefix, suffix):
     return os.path.exists(os.path.join(prefix, suffix))
+
+
+
 
 def main(opt, metrics_callback=None, plotting_callback=None):
     """
@@ -71,10 +62,12 @@ def main(opt, metrics_callback=None, plotting_callback=None):
     if not os.path.exists(opt.exp_path):
         os.makedirs(opt.exp_path)
 
+
     # create learning model and ground truth model
     if opt.model == "NonLinGauss":
         model = LearnableModel_NonLinGauss(opt.num_vars, opt.num_layers, opt.hid_dim, nonlin=opt.nonlin,
                                            norm_prod=opt.norm_prod, square_prod=opt.square_prod)
+
     elif opt.model == "NonLinGaussANM":
         model = LearnableModel_NonLinGaussANM(opt.num_vars, opt.num_layers, opt.hid_dim, nonlin=opt.nonlin,
                                               norm_prod=opt.norm_prod,
@@ -85,6 +78,7 @@ def main(opt, metrics_callback=None, plotting_callback=None):
     # create DataManager for training
     train_data = DataManagerFile(opt.data_path, opt.i_dataset, opt.train_samples, opt.test_samples, train=True,
                                  normalize=opt.normalize_data, random_seed=opt.random_seed)
+
     test_data = DataManagerFile(opt.data_path, opt.i_dataset, opt.train_samples, opt.test_samples, train=False,
                                 normalize=opt.normalize_data, mean=train_data.mean, std=train_data.std,
                                 random_seed=opt.random_seed)
@@ -102,6 +96,8 @@ def main(opt, metrics_callback=None, plotting_callback=None):
         pns(model, train_data, test_data, num_neighbors, opt.pns_thresh, opt.exp_path, metrics_callback,
             plotting_callback)
 
+
+
     # train until constraint is sufficiently close to being satisfied
     if opt.train:
         if file_exists(opt.exp_path, "pns"):
@@ -112,15 +108,22 @@ def main(opt, metrics_callback=None, plotting_callback=None):
         train(model, train_data.adjacency.detach().cpu().numpy(), train_data, test_data, opt, metrics_callback,
               plotting_callback)
 
+        dump(model, opt.exp_path + "/train/", "model", txt=False)
+
+
+
     # remove edges until we have a DAG
     if opt.to_dag:
         # load model
-        assert file_exists(opt.exp_path, "train"), \
-            "The /train folder is required to run --to_dag. Add --train to the command line"
-        model = load(os.path.join(opt.exp_path, "train"), "model.pkl")
+        assert file_exists(opt.exp_path, "train"), "The /train folder is required to run --to_dag. Add --train to the command line"
 
+        if model is None :
+           model = load(os.path.join(opt.exp_path, "train"), "model.pkl")
         # run
         to_dag(model, train_data, test_data, opt, metrics_callback, plotting_callback)
+
+
+
 
     # do further pruning of the DAG
     if opt.cam_pruning:
@@ -149,6 +152,9 @@ def main(opt, metrics_callback=None, plotting_callback=None):
                 model.reset_params()
                 retrain(model, train_data, test_data, path_cam, opt, metrics_callback, plotting_callback)
                 old_adj = current_adj
+
+
+
 
     # if no cam pruning, run it on to-dag exclusively
     elif opt.retrain:

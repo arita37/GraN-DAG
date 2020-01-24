@@ -48,8 +48,10 @@ go get -u -v github.com/golang/dep/cmd/dep
 
 5. Compile Singular Binary
 ```
-sudo apt-get install uuid-dev
+https://github.com/sylabs/singularity/issues/4765
 
+sudo apt-get install uuid-dev
+sudo apt-get ssl
 
 
 cd $GOPATH/src/github.com/sylabs/singularity
