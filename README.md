@@ -1,6 +1,7 @@
 # Gradient-Based Neural DAG Learning
 
-
+This code was written by the authors of the ICLR 2020 submission: "Gradient-Based Neural DAG Learning". 
+Our implementation is in PyTorch but some functions rely on the 
 [Causal Discovery Toolbox](https://diviyan-kalainathan.github.io/CausalDiscoveryToolbox/html/index.html) which relies 
 partly on the R programming language. 
 
