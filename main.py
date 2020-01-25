@@ -39,7 +39,7 @@ if __name__ == "__main__":
     add('--test-samples', type=int, default=None, help='Number of samples used for testing (default is whatever is not used for training)')
     add('--train-batch-size', type=int, default=64,  help='number of samples in a minibatch')
     
-    add('--num-train-iter', type=int, default=400, help='number of meta gradient steps')
+    add('--num-train-iter', type=int, default=1000, help='number of meta gradient steps')
     add('--normalize-data', action="store_true",  help='(x - mu) / std')
 
 
