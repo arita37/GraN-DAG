@@ -6,6 +6,23 @@ Copyright © 2019 Authors of Gradient-Based Neural DAG Learning
 
 
 
+In [1]: import torch
+
+In [2]: torch.cuda.current_device()
+Out[2]: 0
+
+In [3]: torch.cuda.device(0)
+Out[3]: <torch.cuda.device at 0x7efce0b03be0>
+
+torch.cuda.device_count()
+
+torch.cuda.get_device_name(0)
+
+torch.cuda.is_available()
+
+
+
+
 """
 import os
 import argparse
