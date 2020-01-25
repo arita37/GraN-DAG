@@ -1,54 +1,46 @@
-
-
-
-
-
-3 types of data :
-
+####################################################################################################
+####################################################################################################
+3 types of data in /data/
 
   DAG.npy   : DAG as matrix
 
   data.npy
 
-  CPDAG.npy
-
-
-  Complete partial Dependence DAG :
+  CPDAG.npy  :  Complete partial Dependence DAG (like DAG but class equivalence)
      
 
 
-
-
-        # Load the graph
-        adjacency = np.load(os.path.join(file_path, "DAG{}.npy".format(i_dataset)))
-
-
-        # Load data
-        self.data_path = os.path.join(file_path, "data{}.npy".format(i_dataset))
+############ Dataset   ##############################################################################
+/data/sachs :
+/data/pnl/ :
+/data/data_p10_e10_n1000
 
 
 
 
-        # Shuffle and filter examples
-        shuffle_idx = np.arange(data.shape[0])
-        self.random.shuffle(shuffle_idx)
-        data = data[shuffle_idx[: train_samples + test_samples]]
+#####################################################################################################
+# Load the graph
+adjacency = np.load(os.path.join(file_path, "DAG{}.npy".format(i_dataset)))
 
 
+# Load data
+self.data_path = os.path.join(file_path, "data{}.npy".format(i_dataset))
 
+# Shuffle and filter examples
+    shuffle_idx = np.arange(data.shape[0])
+    self.random.shuffle(shuffle_idx)
+    data = data[shuffle_idx[: train_samples + test_samples]]
 
 def sample(self, batch_size):
-        sample_idxs = self.random.choice(np.arange(int(self.num_samples)), size=(int(batch_size),), replace=False)
-        samples     = self.dataset[torch.as_tensor(sample_idxs).long()]
-        return samples, torch.ones_like(samples)  # second output is mask (for intervention in the future)
+    sample_idxs = self.random.choice(np.arange(int(self.num_samples)), size=(int(batch_size),), replace=False)
+    samples     = self.dataset[torch.as_tensor(sample_idxs).long()]
 
 
 
 
-
-
-
-## sachs protein
+####################################################################################################
+############ sachs protein Data   ##################################################################
+\_gran_dag\data\sachs
 
   # Imports datasets used in the paper: 
   #Sachs, Karen, et al. "Causal protein-signaling networks derived from multiparameter single-cell data." Science 308.5721 (2005): 523-529.
@@ -61,6 +53,13 @@ def sample(self, batch_size):
 
 
 
+
+
+################################################################################################
+################################################################################################
+ FROM PDF
+
+  
 ############# 4.1 Synthetic data  ##############################################################
 We have generated different data set types which vary along three dimensions: 
   
