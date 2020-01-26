@@ -1,0 +1,10 @@
+networkx==1.11
+numpy==1.18.1
+pandas==0.25.3
+pgmpy==0.1.10
+pyparsing==2.4.6
+python-dateutil==2.8.1
+pytz==2019.3
+smclib==1.8.3
+statsmodels==0.11.0
+torch==1.4.0

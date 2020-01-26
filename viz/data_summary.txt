@@ -9,11 +9,49 @@
   CPDAG.npy  :  Complete partial Dependence DAG (like DAG but class equivalence)
      
 
-
+####################################################################################################
 ############ Dataset   ##############################################################################
-/data/sachs :
+/data/sachs : Protein data
+
+
 /data/pnl/ :
-/data/data_p10_e10_n1000
+
+
+
+/data/data_p10_e10_n1000/ :
+    synthetic data
+
+
+
+
+############ sachs protein Data   ##################################################################
+\_gran_dag\data\sachs
+  # Imports datasets used in the paper: 
+  #Sachs, Karen, et al. "Causal protein-signaling networks derived from multiparameter single-cell data." Science 308.5721 (2005): 523-529.
+  # Imports the data from the Data Files directory downloaded as a zip from the publication's site on Science.com
+  # Direct link to the file as of Dec 15, 2014: 
+  # http://www.sciencemag.org/content/suppl/2005/04/21/308.5721.523.DC1/Sachs.SOM.Datasets.zip
+
+
+
+
+
+conda create -n bnlearn2 python=3.6.5
+pip install bnlearn 
+pip3 install http://download.pytorch.org/whl/cpu/torch-0.4.0-cp36-cp36m-win_amd64.whl 
+pip install spyder-kernels==1.5.0
+
+
+
+
+
+pip install torch
+
+pip install sklearn pandas tqdm funcsigs pgmpy statsmodels community
+pip install networkx==v1.11
+pip install matplotlib==2.2.3
+
+
 
 
 
@@ -21,7 +59,6 @@
 #####################################################################################################
 # Load the graph
 adjacency = np.load(os.path.join(file_path, "DAG{}.npy".format(i_dataset)))
-
 
 # Load data
 self.data_path = os.path.join(file_path, "data{}.npy".format(i_dataset))
@@ -38,16 +75,6 @@ def sample(self, batch_size):
 
 
 
-####################################################################################################
-############ sachs protein Data   ##################################################################
-\_gran_dag\data\sachs
-
-  # Imports datasets used in the paper: 
-  #Sachs, Karen, et al. "Causal protein-signaling networks derived from multiparameter single-cell data." Science 308.5721 (2005): 523-529.
-  # Imports the data from the Data Files directory downloaded as a zip from the publication's site on Science.com
-  # Direct link to the file as of Dec 15, 2014: 
-  # http://www.sciencemag.org/content/suppl/2005/04/21/308.5721.523.DC1/Sachs.SOM.Datasets.zip
-  #
 
 
 
