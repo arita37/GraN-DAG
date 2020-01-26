@@ -21,6 +21,10 @@ G = bnlearn.plot(model)
 
 
 
+
+
+
+
 import os
 
 print(os)
@@ -34,8 +38,6 @@ print(numpy)
 
 import numpy as np
 
-
-np.cos()
 
 
 
