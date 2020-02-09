@@ -23,33 +23,57 @@
 
 
 
-
 ############ sachs protein Data   ##################################################################
 \_gran_dag\data\sachs
   # Imports datasets used in the paper: 
   #Sachs, Karen, et al. "Causal protein-signaling networks derived from multiparameter single-cell data." Science 308.5721 (2005): 523-529.
   # Imports the data from the Data Files directory downloaded as a zip from the publication's site on Science.com
-  # Direct link to the file as of Dec 15, 2014: 
   # http://www.sciencemag.org/content/suppl/2005/04/21/308.5721.523.DC1/Sachs.SOM.Datasets.zip
 
 
 
 
+#### TODO
+   1) Learn the DAG using one of the algo, export the DAG in format.
+   
+   2) Load the DAG and used "Bayesian Network Classifiers / Predictions" to predict :
+    
+       Causal Learning :
+   
+       Bayesian Classification from DAG
+       
+       
+      
+   
 
+
+
+##### ENVS    ######################################################################################
 conda create -n bnlearn2 python=3.6.5
 pip install bnlearn 
 pip3 install http://download.pytorch.org/whl/cpu/torch-0.4.0-cp36-cp36m-win_amd64.whl 
 pip install spyder-kernels==1.5.0
-
-
-
-
 
 pip install torch
 
 pip install sklearn pandas tqdm funcsigs pgmpy statsmodels community
 pip install networkx==v1.11
 pip install matplotlib==2.2.3
+
+
+
+
+####### Causal modelling   #########################################################################
+Model:
+The causal model has a machine learning model at its core, provided as learner parameter.
+This ML model will be used to predict probability of quit smoking given the covariates.
+These probabilities will be used to obtain $w_i$.
+Then, we'll estimate average balanced outcome using Horvitz–Thompson estimator:
+
+
+
+
+
 
 
 
